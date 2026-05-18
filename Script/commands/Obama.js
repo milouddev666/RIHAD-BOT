@@ -113,11 +113,12 @@ module.exports.run = async function({ api, event, args }) {
         );
 
     } catch (err) {
-        console.log("OBAMA ERROR:", err);
-        return api.sendMessage(
-            "❌ حصل خطأ في تنفيذ الأمر",
-            event.threadID,
-            event.messageID
-        );
+    console.log("OBAMA FULL ERROR:\n", err);
+    return api.sendMessage(
+        "❌ خطأ داخل الأمر (تم تسجيله في الكونسول)",
+        event.threadID,
+        event.messageID
+    );
+}
     }
 };
