@@ -17,20 +17,17 @@ const BOT_DESC = pkg.description || "Islamick Chat Bot";
 
 // ==================== Express Server ====================
 const app = express();
-const port = process.env.PORT || 8080;
+
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
+const port = process.env.PORT;
+
 app.listen(port, () => {
-    logger(`Server is running on port ${port}...`, "[ Starting ]");
-}).on("error", (err) => {
-    if (err.code === "EACCES") {
-        logger(`Permission denied. Cannot bind to port ${port}.`, "[ Error ]");
-    } else {
-        logger(`Server error: ${err.message}`, "[ Error ]");
-    }
+    logger(`Server is running on port ${port}`, "[ Starting ]");
 });
 
 // ==================== Start Bot ====================
